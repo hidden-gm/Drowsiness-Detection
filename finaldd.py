@@ -1,14 +1,14 @@
 from scipy.spatial import distance
 from imutils import face_utils
-from pygame import mixer
+# from pygame import mixer
 import imutils
 import dlib
 import cv2
 
-mixer.init()
-mixer.music.load("music.wav")
-ambulance_sound = mixer.Sound("ambulance.mp3")
-ambulance_channel = mixer.Channel(1)  # Create a separate channel for the ambulance sound
+# mixer.init()
+# mixer.music.load("music.wav")
+# ambulance_sound = mixer.Sound("ambulance.mp3")
+# ambulance_channel = mixer.Channel(1)  # Create a separate channel for the ambulance sound
 
 def eye_aspect_ratio(eye):
     A = distance.euclidean(eye[1], eye[5])
@@ -77,9 +77,9 @@ while True:
             below_line_count = 0  # Reset counter if the dot goes above the line
 
         # Play ambulance sound if the dot has been below the line for 20 frames
-        if below_line_count >= 20 and not ambulance_channel.get_busy():
-            mixer.music.stop()  # Stop any other sound playing
-            ambulance_channel.play(ambulance_sound)
+        # if below_line_count >= 20 and not ambulance_channel.get_busy():
+        #     mixer.music.stop()  # Stop any other sound playing
+        #     ambulance_channel.play(ambulance_sound)
         
         if ear < thresh:
             flag += 1
@@ -88,9 +88,9 @@ while True:
                             cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
                 cv2.putText(frame, "****************ALERT!****************", (10, 325),
                             cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
-                if not mixer.music.get_busy():
-                    ambulance_channel.stop()  # Stop any other sound playing
-                    mixer.music.play()
+                # if not mixer.music.get_busy():
+                #     ambulance_channel.stop()  # Stop any other sound playing
+                #     mixer.music.play()
         else:
             flag = 0
     

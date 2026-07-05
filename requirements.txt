@@ -1,0 +1,5 @@
+scipy>=1.13
+imutils>=0.5.4
+pygame>=2.6
+dlib>=19.24
+opencv-python>=4.10
